@@ -1,5 +1,13 @@
 import streamlit as st
 from rag_core import qa_pipeline
+import os
+import subprocess
+
+# 如果 chroma_db 文件夹不存在，则自动构建数据库
+if not os.path.exists("chroma_db"):
+    print("🔨 正在构建向量数据库...")
+    subprocess.run(["python", "build_db.py"])
+    print("✅ 构建完成")
 
 st.set_page_config(page_title="🏂滑雪助手KK", page_icon="🏂️")
 st.title("🏂️ KK的滑雪知识智能问答")
