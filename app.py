@@ -1,15 +1,18 @@
-import streamlit as st
-from rag_core import qa_pipeline
 import os
 import subprocess
+import sys
 
-# 如果 chroma_db 文件夹不存在，则自动构建数据库
+# ----- 🔨 如果云端没有向量数据库，自动构建 -----
 if not os.path.exists("chroma_db"):
-    print("🔨 正在构建向量数据库...")
-    subprocess.run(["python", "build_db.py"])
-    print("✅ 构建完成")
+    print("🔨 云端未检测到向量数据库，正在自动构建...")
+    subprocess.run([sys.executable, "build_db.py"], check=True)
+    print("✅ 数据库构建完成")
 
-st.set_page_config(page_title="🏂滑雪助手KK", page_icon="🏂️")
+# ----- 现在可以安全导入 RAG 核心 -----
+import streamlit as st
+from rag_core import qa_pipeline
+
+st.set_page_config(page_title="滑雪助手KK", page_icon="🏂️")
 st.title("🏂️ KK的滑雪知识智能问答")
 st.caption("基于KK的所有视频文稿训练而成，有什么问题尽管问！")
 
