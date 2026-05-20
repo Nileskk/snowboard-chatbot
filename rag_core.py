@@ -5,9 +5,9 @@ from sentence_transformers import SentenceTransformer
 import chromadb
 
 # ----- 智能加载 .env -----
-# 强制从 rag_core.py 所在目录加载 .env
-env_path = os.path.join(os.path.dirname(__file__), '.env')
-load_dotenv(env_path)
+from dotenv import load_dotenv
+# 本地开发时加载 .env，云端自动忽略（因为无该文件）
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), verbose=False)
 
 # ----- 初始化组件 -----
 client = OpenAI(
