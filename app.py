@@ -2,11 +2,29 @@ import os
 import subprocess
 import sys
 
-# ----- 🔨 如果云端没有向量数据库，自动构建 -----
+# ----- 🔨 自动构建向量数据库（带详细日志和错误处理） -----
 if not os.path.exists("chroma_db"):
     print("🔨 云端未检测到向量数据库，正在自动构建...")
-    subprocess.run([sys.executable, "build_db.py"], check=True)
-    print("✅ 数据库构建完成")
+    print(f"   当前工作目录: {os.getcwd()}")
+    print(f"   all_transcripts.txt 是否存在: {os.path.exists('all_transcripts.txt')}")
+    
+    try:
+        result = subprocess.run(
+            [sys.executable, "build_db.py"],
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        print("✅ 构建成功！输出：")
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print("❌ 构建失败！错误输出：")
+        print(e.stderr)
+        print("stdout:", e.stdout)
+        # 直接抛出错误，停止启动，方便调试
+        raise RuntimeError("向量数据库构建失败，应用无法启动") from e
+else:
+    print("✅ chroma_db 已存在，跳过构建。")
 
 # ----- 现在可以安全导入 RAG 核心 -----
 import streamlit as st
