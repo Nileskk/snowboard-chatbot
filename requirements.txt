@@ -3,4 +3,3 @@ chromadb
 sentence-transformers
 streamlit
 python-dotenv
-sentence-transformers==2.2.2
