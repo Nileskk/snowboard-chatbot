@@ -1,36 +1,3 @@
-import os
-import subprocess
-import sys
-import shutil
-import chromadb
-
-# ----- 🔨 智能检查并自动构建向量数据库 -----
-CHROMA_DB_PATH = "./chroma_db"
-COLLECTION_NAME = "ski_knowledge"
-
-def is_collection_ready():
-    """检查向量数据库集合是否存在且可用"""
-    if not os.path.exists(CHROMA_DB_PATH):
-        return False
-    try:
-        client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
-        client.get_collection(COLLECTION_NAME)
-        return True
-    except Exception:
-        return False
-
-if not is_collection_ready():
-    print("🔨 向量数据库集合缺失，正在重新构建...")
-    # 删除旧的（可能已损坏的）数据库文件夹
-    if os.path.exists(CHROMA_DB_PATH):
-        shutil.rmtree(CHROMA_DB_PATH)
-    # 运行构建脚本
-    subprocess.run([sys.executable, "build_db.py"], check=True)
-    print("✅ 数据库构建完成")
-else:
-    print("✅ 向量数据库集合已就绪，直接启动。")
-
-# ----- 现在可以安全导入 RAG 核心 -----
 import streamlit as st
 from rag_core import qa_pipeline
 
