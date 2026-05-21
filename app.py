@@ -1,5 +1,12 @@
 import streamlit as st
 from rag_core import qa_pipeline
+import streamlit as st
+
+st.set_page_config(
+    page_title="Snowboard Chatbot",
+    page_icon="🏂",
+    layout="wide"
+)
 
 st.set_page_config(page_title="滑雪助手KK", page_icon="🏂️")
 st.title("🏂️ KK的滑雪知识智能问答")
