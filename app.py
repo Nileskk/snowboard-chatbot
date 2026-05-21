@@ -10,7 +10,7 @@ st.set_page_config(
 
 st.set_page_config(page_title="滑雪助手KK", page_icon="🏂️")
 st.title("🏂️ KK的滑雪知识智能问答")
-st.caption("基于KK的所有视频文稿训练而成，有什么问题尽管问！")
+st.caption("我是你的滑雪助教小K，我的知识是基于KK的所有视频文稿训练而成，有什么问题尽管问我哦 ^0^")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
