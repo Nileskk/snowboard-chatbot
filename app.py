@@ -49,12 +49,12 @@ st.markdown("""
 <style>
     /* Main background */
     .stApp {
-        background-color: #313131;
+        background-color: #f5f5f5;
     }
     
     /* Chat area background */
     .stChatMessage {
-        background-color: #313131;
+        background-color: #f5f5f5;
     }
     
     /* Hide Streamlit footer */
