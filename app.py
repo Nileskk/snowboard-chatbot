@@ -45,3 +45,20 @@ footer {visibility: hidden;}
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+    /* Main background */
+    .stApp {
+        background-color: #313131;
+    }
+    
+    /* Chat area background */
+    .stChatMessage {
+        background-color: #313131;
+    }
+    
+    /* Hide Streamlit footer */
+    footer {visibility: hidden;}
+            
+</style>
+""", unsafe_allow_html=True)
