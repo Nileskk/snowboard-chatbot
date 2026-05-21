@@ -29,3 +29,18 @@ if prompt := st.chat_input("例如：我在单板推坡的时候总是卡刃怎�
             answer = qa_pipeline(prompt)
             st.markdown(answer)
     st.session_state.messages.append({"role": "assistant", "content": answer})
+
+hide_streamlit_style = """
+<style>
+footer {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+hide_streamlit_style = """
+<style>
+footer {visibility: hidden;}
+.viewerBadge_container__1QSob {display: none;}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
